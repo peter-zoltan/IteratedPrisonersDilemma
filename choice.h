@@ -9,7 +9,7 @@ class Choice {
 public: virtual ~Choice();
 };
 
-class PrisonerChoice : Choice {
+class PrisonerChoice : public Choice {
 public:
     bool snitch;
     explicit PrisonerChoice(bool snitch);

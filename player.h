@@ -29,7 +29,7 @@ public:
      * optionally uses the player's memory
      * may have to return pointer of reference
      */
-    virtual Choice strategy () const;
+    virtual Choice* strategy () const;
 
 };
 
@@ -39,7 +39,7 @@ public:
  * inheritor of the Player class, to play the prisoner's dilemma game
  * only declared so that collections can be more specifically typed than Player
  */
-class Prisoner : Player {};
+class Prisoner : public Player {};
 
 /**
  * @class SelfishPrisoner
@@ -48,11 +48,11 @@ class Prisoner : Player {};
  * I'll see later
  * strategy may have to return pointer or reference
  */
-class SelfishPrisoner : Prisoner {
+class SelfishPrisoner : public Prisoner {
 
 public:
-    Choice strategy () const override {
-        PrisonerChoice decision (true);
+    Choice* strategy () const override {
+        PrisonerChoice* decision = new PrisonerChoice(true);
         return decision;
     }
 
