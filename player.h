@@ -27,7 +27,6 @@ public:
      *@function strategy()
      * determines what actions the player takes
      * optionally uses the player's memory
-     * may have to return pointer of reference
      */
     virtual Choice* strategy () const;
 
@@ -43,10 +42,7 @@ class Prisoner : public Player {};
 
 /**
  * @class SelfishPrisoner
- * it seems return type cannot be implicitly narrowed
- * for now there"s no point to it being more than a bool
- * I'll see later
- * strategy may have to return pointer or reference
+ *
  */
 class SelfishPrisoner : public Prisoner {
 
