@@ -5,14 +5,14 @@
 #ifndef CHOICE_H
 #define CHOICE_H
 
-class Choice {};
+class Choice {
+public: virtual ~Choice();
+};
 
-class PrisonerChoice {
+class PrisonerChoice : Choice {
 public:
     bool snitch;
-    PrisonerChoice(bool snitch) {
-        this->snitch = snitch;
-    }
+    explicit PrisonerChoice(bool snitch);
 };
 
 #endif //CHOICE_H
