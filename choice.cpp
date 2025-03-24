@@ -4,10 +4,8 @@
 
 #include "choice.h"
 
-Choice::~Choice() {};
+// Choice::~Choice() {};
+// dont remember why this was here
 
-PrisonerChoice::PrisonerChoice(bool snitch) {
-    this->snitch = snitch;
-}
-
-///probably dont have to take these all the way out here
+// probably dont have to take these all the way out here
+// in it's current state this .cpp isn't needed, even the .h is barely

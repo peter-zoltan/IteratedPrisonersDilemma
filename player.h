@@ -19,9 +19,7 @@ class Player {
 
 public:
 
-    virtual ~Player() {
-        delete[] memory;
-    }
+    virtual ~Player() { delete[] memory; }
 
     /**
      *@function strategy()
@@ -32,7 +30,6 @@ public:
 
 };
 
-
 /**
  * @class Prisoner
  * inheritor of the Player class, to play the prisoner's dilemma game
@@ -42,16 +39,14 @@ class Prisoner : public Player {};
 
 /**
  * @class SelfishPrisoner
- *
+ * snitches every time
  */
-class SelfishPrisoner : public Prisoner {
+class SelfishPrisoner : public Prisoner { public: Choice* strategy () const override; };
 
-public:
-    Choice* strategy () const override {
-        PrisonerChoice* decision = new PrisonerChoice(true);
-        return decision;
-    }
-
-};
+/**
+ * @class LoyalPrisoner
+ * never snitches
+ */
+class LoyalPrisoner : public Prisoner { public: Choice* strategy () const override; };
 
 #endif //PLAYER_H
