@@ -15,9 +15,8 @@ class GameManager {
 
 public:
 
-    GameManager(const PlayerArray& players, int rounds = 1) {
+    GameManager(const PlayerArray& players, int rounds = 1) : players(players) {
         if (rounds > 0) this->rounds = rounds;
-        this->players = players;
     }
 
     void runGame() const;
