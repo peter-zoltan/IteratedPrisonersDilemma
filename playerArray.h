@@ -7,17 +7,25 @@
 
 #include "player.h"
 
+/**
+ * @class PlayerArray
+ * stores and manages a heterogenous collection of players
+ */
 class PlayerArray {
-    Player* players;
+
+    Player** players;
     int size;
+
 public:
     PlayerArray() : players(nullptr), size(0) {}
 
     ~PlayerArray() { delete[] players; }
 
-    void add(const Player& player);
+    void add(Player* player);
 
-    Player operator[](int index) const;
+    Player* operator[](int index) const;
+
+    int getSize() const;
 };
 
 #endif //PLAYERARRAY_H

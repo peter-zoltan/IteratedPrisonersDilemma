@@ -7,9 +7,9 @@
 
 /**
  * @class Choice
- * abstract wrapper class for possible decisions of players
+ * (not actually yet but ill try) abstract wrapper class for possible decisions of players
  */
-class Choice { public: virtual ~Choice(); };
+class Choice { public: virtual ~Choice() = default; };
 
 /**
  * @class PrisonerChoice
@@ -23,6 +23,8 @@ class PrisonerChoice : public Choice {
 public:
 
     PrisonerChoice(bool snitch) : Choice(), snitch(snitch) {};
+
+    //~PrisonerChoice() {};
 
     //bool getChoice() const { return snitch; }
 };

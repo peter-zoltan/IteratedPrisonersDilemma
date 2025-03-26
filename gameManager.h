@@ -17,6 +17,7 @@ public:
 
     GameManager(const PlayerArray& players, int rounds = 1) : players(players) {
         if (rounds > 0) this->rounds = rounds;
+        else this->rounds = 1;
     }
 
     void runGame() const;
