@@ -3,11 +3,15 @@
 //
 
 #include "player.h"
+#include "choice.h"
+
+Choice* Player::strategy () const {
+    std::cout << "Called function strategy() of base class Player!!!" << std::endl;
+    return nullptr;
+}
 
 /**
- * @function SelfishPrisoner::strategy()
- * @return
- * returns pointer to dynamically allocated type PrisonerChoice with true wrapped value
+ * @return returns pointer to dynamically allocated type PrisonerChoice with true wrapped value
  */
 Choice* SelfishPrisoner::strategy() const {
     PrisonerChoice* decision = new PrisonerChoice(true);    // requires a delete call somewhere
@@ -15,9 +19,7 @@ Choice* SelfishPrisoner::strategy() const {
 }
 
 /**
- * @function LoyalPrisoner::strategy()
- * @return
- * returns pointer to dynamically allocated type PrisonerChoice with false wrapped value
+ * @return returns pointer to dynamically allocated type PrisonerChoice with false wrapped value
  */
 Choice* LoyalPrisoner::strategy() const {
     PrisonerChoice* decision = new PrisonerChoice(false);    // requires a delete call somewhere

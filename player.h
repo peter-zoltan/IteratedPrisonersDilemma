@@ -5,11 +5,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <iostream>
+#include <ostream>
+
 #include "choice.h"
 
 /**
  * @class Player
- * abstract class, does not define type of game or strategy as is
+ * (not actually yet) abstract class, does not define type of game or strategy as is
  * optionally has a memory of their opponents past action(s) within the match
  */
 class Player {
@@ -22,11 +25,12 @@ public:
     virtual ~Player() { delete[] memory; }
 
     /**
-     *@function strategy()
      * determines what actions the player takes
      * optionally uses the player's memory
      */
     virtual Choice* strategy () const;
+
+    virtual void print () const { std::cout << "Player" << std::endl; }
 
 };
 
@@ -41,12 +45,26 @@ class Prisoner : public Player {};
  * @class SelfishPrisoner
  * snitches every time
  */
-class SelfishPrisoner : public Prisoner { public: Choice* strategy () const override; };
+class SelfishPrisoner : public Prisoner {
+
+public:
+
+    Choice* strategy () const override;
+
+    void print () const override { std::cout << "Selfish" << std::endl; }
+};
 
 /**
  * @class LoyalPrisoner
  * never snitches
  */
-class LoyalPrisoner : public Prisoner { public: Choice* strategy () const override; };
+class LoyalPrisoner : public Prisoner {
+
+public:
+
+    Choice* strategy () const override;
+
+    void print () const override { std::cout << "Loyal" << std::endl; }
+};
 
 #endif //PLAYER_H
