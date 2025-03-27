@@ -34,12 +34,14 @@ public:
 
 };
 
+
 /**
  * @class Prisoner
  * inheritor of the Player class, to play the prisoner's dilemma game
  * only declared so that collections can be more specifically typed than Player
  */
 class Prisoner : public Player {};
+
 
 /**
  * @class SelfishPrisoner
@@ -54,6 +56,7 @@ public:
     void print () const override { std::cout << "Selfish" << std::endl; }
 
 };
+
 
 /**
  * @class LoyalPrisoner
