@@ -15,7 +15,5 @@ void PlayerArray::add(Player* player) {
 
 Player* PlayerArray::operator[](int index) const {
     if (index < 0 || index >= size) throw "index out of range";
-    return players[index];                  //might have to make a copy constructor for this?
+    return players[index];
 }
-
-int PlayerArray::getSize() const { return size; }

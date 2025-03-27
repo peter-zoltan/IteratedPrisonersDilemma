@@ -5,6 +5,7 @@
 #include "player.h"
 #include "choice.h"
 
+// why can't it work with this being purely virtual?
 Choice* Player::strategy () const {
     std::cout << "Called function strategy() of base class Player!!!" << std::endl;
     return nullptr;

@@ -7,26 +7,24 @@
 
 /**
  * @class Choice
- * (not actually yet but ill try) abstract wrapper class for possible decisions of players
+ * wrapper class for possible decisions of players
+ * can only be initialized from children classes
  */
-class Choice { public: virtual ~Choice() = default; };
+class Choice {
+protected:
+    Choice() = default;
+public:
+    virtual ~Choice() = default;
+};      //here it doesn't really matter that it's not abstract
 
 /**
  * @class PrisonerChoice
  * wrapper class for boolean value representing the player's choice in the prisoner's dilemma
- *
  */
 class PrisonerChoice : public Choice {
-
     bool snitch;
-
 public:
-
     PrisonerChoice(bool snitch) : Choice(), snitch(snitch) {};
-
-    //~PrisonerChoice() {};
-
-    //bool getChoice() const { return snitch; }
 };
 
 #endif //CHOICE_H

@@ -21,11 +21,12 @@ public:
 
     ~PlayerArray() { delete[] players; }
 
+    int getSize() const { return size; }
+
     void add(Player* player);
 
     Player* operator[](int index) const;
 
-    int getSize() const;
 };
 
 #endif //PLAYERARRAY_H

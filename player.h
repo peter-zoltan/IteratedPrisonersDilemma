@@ -52,6 +52,7 @@ public:
     Choice* strategy () const override;
 
     void print () const override { std::cout << "Selfish" << std::endl; }
+
 };
 
 /**
@@ -65,6 +66,7 @@ public:
     Choice* strategy () const override;
 
     void print () const override { std::cout << "Loyal" << std::endl; }
+
 };
 
 #endif //PLAYER_H
