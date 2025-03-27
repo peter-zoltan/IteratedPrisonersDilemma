@@ -3,3 +3,5 @@
 //
 
 #include "choice.h"
+
+#include "memtrace.h"

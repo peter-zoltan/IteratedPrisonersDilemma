@@ -19,7 +19,7 @@ class PlayerArray {
 public:
     PlayerArray() : players(nullptr), size(0) {}
 
-    ~PlayerArray() { delete[] players; }
+    ~PlayerArray();
 
     int getSize() const { return size; }
 

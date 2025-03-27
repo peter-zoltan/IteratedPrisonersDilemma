@@ -5,6 +5,8 @@
 #include "playerArray.h"
 #include "gameManager.h"
 
+#include "memtrace.h"
+
 int main() {
     std::cout << "Hello World!\n";
 

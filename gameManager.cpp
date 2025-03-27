@@ -3,3 +3,5 @@
 //
 
 #include "gameManager.h"
+
+#include "memtrace.h"
