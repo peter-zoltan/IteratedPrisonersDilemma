@@ -9,7 +9,7 @@
 
 /**
  * @class PlayerArray
- * stores and manages a heterogenous collection of players
+ * stores and manages a heterogeneous collection of players
  */
 class PlayerArray {
 

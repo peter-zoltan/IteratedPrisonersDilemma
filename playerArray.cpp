@@ -21,6 +21,6 @@ void PlayerArray::add(Player* player) {
 }
 
 Player* PlayerArray::operator[](int index) const {
-    if (index < 0 || index >= size) throw "index out of range";
+    if (index < 0 || index >= size) throw std::out_of_range("index out of range");
     return players[index];
 }
