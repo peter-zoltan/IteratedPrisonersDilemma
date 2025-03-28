@@ -12,7 +12,7 @@
 
 /**
  * @class Player
- * (not actually yet) abstract class, does not define type of game or strategy as is
+ * abstract class, does not define type of game or strategy as is
  * optionally has a memory of their opponents past action(s) within the match
  */
 class Player {
@@ -28,9 +28,9 @@ public:
      * determines what actions the player takes
      * optionally uses the player's memory
      */
-    virtual Choice* strategy () const;
+    virtual Choice* strategy () const = 0;
 
-    virtual void print () const { std::cout << "Player" << std::endl; }
+    virtual void print () const = 0;
 
 };
 
