@@ -36,18 +36,10 @@ public:
 
 
 /**
- * @class Prisoner
- * inheritor of the Player class, to play the prisoner's dilemma game
- * only declared so that collections can be more specifically typed than Player
- */
-class Prisoner : public Player {};
-
-
-/**
  * @class SelfishPrisoner
  * snitches every time
  */
-class SelfishPrisoner : public Prisoner {
+class SelfishPrisoner : public Player {
 
 public:
 
@@ -62,7 +54,7 @@ public:
  * @class LoyalPrisoner
  * never snitches
  */
-class LoyalPrisoner : public Prisoner {
+class LoyalPrisoner : public Player {
 
 public:
 

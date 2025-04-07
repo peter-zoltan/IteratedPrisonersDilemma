@@ -5,22 +5,27 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
-#include "playerArray.h"
+#include "Player.h"
+#include <vector>
+using std::vector;
+
 
 class GameManager {
 
-    PlayerArray players;
+    vector<Player*> players;
     int rounds;
     GameManager();  // hiding default constructor
 
 public:
 
-    GameManager(const PlayerArray& players, int rounds = 1) : players(players) {
+    GameManager(const vector<Player*>& players, int rounds = 1) : players(players) {
         if (rounds > 0) this->rounds = rounds;
         else this->rounds = 1;
     }
 
     void runGame() const;
+
+    ~GameManager();
 };
 
 #endif //GAMEMANAGER_H
