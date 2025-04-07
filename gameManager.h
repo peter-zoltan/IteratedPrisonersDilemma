@@ -18,10 +18,7 @@ class GameManager {
 
 public:
 
-    GameManager(const vector<Player*>& players, int rounds = 1) : players(players) {
-        if (rounds > 0) this->rounds = rounds;
-        else this->rounds = 1;
-    }
+    GameManager(const vector<Player*>& players, int rounds = 1);
 
     void runGame() const;
 

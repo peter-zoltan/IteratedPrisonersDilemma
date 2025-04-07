@@ -7,8 +7,12 @@
 
 #include <iostream>
 #include <ostream>
+#include <vector>
+using std::vector;
 
-#include "choice.h"
+//#include "choice.h"
+
+typedef bool cooperation;
 
 /**
  * @class Player
@@ -17,18 +21,18 @@
  */
 class Player {
 
-    bool* memory = nullptr;
-    int memLength = 0;
+    static int ID;
+    vector<cooperation> memory;
 
 public:
 
-    virtual ~Player() { delete[] memory; }
+    virtual ~Player() = default;
 
     /**
      * determines what actions the player takes
      * optionally uses the player's memory
      */
-    virtual Choice* strategy () const = 0;
+    virtual cooperation strategy () const = 0;
 
     virtual void print () const = 0;
 
@@ -43,7 +47,7 @@ class SelfishPrisoner : public Player {
 
 public:
 
-    Choice* strategy () const override;
+    cooperation strategy () const override;
 
     void print () const override { std::cout << "Selfish" << std::endl; }
 
@@ -58,7 +62,7 @@ class LoyalPrisoner : public Player {
 
 public:
 
-    Choice* strategy () const override;
+    cooperation strategy () const override;
 
     void print () const override { std::cout << "Loyal" << std::endl; }
 
