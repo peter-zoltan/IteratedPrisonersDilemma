@@ -10,8 +10,6 @@
 #include <vector>
 using std::vector;
 
-//#include "choice.h"
-
 typedef bool cooperation;
 
 /**
@@ -21,10 +19,16 @@ typedef bool cooperation;
  */
 class Player {
 
-    static int ID;
+protected:
+
+    static int IDnum;
+    int ID;
+    int score = 0;
     vector<cooperation> memory;
 
 public:
+
+    Player();
 
     virtual ~Player() = default;
 
@@ -34,8 +38,11 @@ public:
      */
     virtual cooperation strategy () const = 0;
 
-    virtual void print () const = 0;
+    virtual void print (void) const = 0;
 
+    void resetId();
+
+    void incrementScore(int increment);
 };
 
 
@@ -49,7 +56,7 @@ public:
 
     cooperation strategy () const override;
 
-    void print () const override { std::cout << "Selfish" << std::endl; }
+    void print () const override;
 
 };
 
@@ -64,7 +71,7 @@ public:
 
     cooperation strategy () const override;
 
-    void print () const override { std::cout << "Loyal" << std::endl; }
+    void print () const override;
 
 };
 

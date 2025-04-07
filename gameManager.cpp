@@ -7,10 +7,8 @@
 #include "memtrace.h"
 
 
-GameManager::GameManager(const vector<Player*>& players, int rounds) : players(players) {
-    if (rounds > 0) this->rounds = rounds;
-    else this->rounds = 1;
-}
+GameManager::GameManager(const vector<Player*>& players, int rounds, int R, int P, int T, int S)
+    : players(players), rounds(rounds), R(R), P(P), T(T), S(S) {}
 
 
 GameManager::GameManager() {

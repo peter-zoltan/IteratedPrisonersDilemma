@@ -3,9 +3,14 @@
 //
 
 #include "player.h"
-#include "choice.h"
 
 #include "memtrace.h"
+
+
+int Player::IDnum = 0;
+
+
+Player::Player() : ID(IDnum) { IDnum++; }
 
 
 /**
@@ -13,7 +18,11 @@
  */
 cooperation SelfishPrisoner::strategy() const { return false; }
 
+void SelfishPrisoner::print () const { std::cout << "Selfish #"<< ID << std::endl; }
+
 /**
  * @return returns pointer to dynamically allocated type PrisonerChoice with false wrapped value
  */
 cooperation LoyalPrisoner::strategy() const { return true; }
+
+void LoyalPrisoner::print () const { std::cout << "Loyal #" << ID << std::endl; }

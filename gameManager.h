@@ -13,12 +13,12 @@ using std::vector;
 class GameManager {
 
     vector<Player*> players;
-    int rounds;
+    int R, P, T, S, rounds;
     GameManager();  // hiding default constructor
 
 public:
 
-    GameManager(const vector<Player*>& players, int rounds = 1);
+    GameManager(const vector<Player*>& players, int rounds, int R, int P, int T, int S);
 
     void runGame() const;
 
