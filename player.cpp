@@ -13,7 +13,6 @@ Player::Player() : ID(IDnum) { IDnum++; }
 
 void Player::resetId() { ID = 0; }
 
-
 void Player::incrementScore(int increment) { score += increment; }
 
 
