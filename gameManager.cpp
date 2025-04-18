@@ -7,12 +7,32 @@
 #include "memtrace.h"
 
 
-GameManager::GameManager(const vector<Player*>& players, int rounds, int R, int P, int T, int S)
-    : players(players), rounds(rounds), R(R), P(P), T(T), S(S) {}
+GameManager::GameManager(int rounds, int R, int P, int T, int S)
+    : rounds(rounds), R(R), P(P), T(T), S(S) {}
 
 
-GameManager::GameManager() {
-    for (vector<Player*>::iterator player = players.begin(); player != players.end(); player++) {
+GameManager::~GameManager() {
+    for (auto player = players.begin(); player != players.end(); ++player) {
         delete *player;
     }
 }
+
+void GameManager::runGame () const {
+    for (auto a = players.begin(); a != players.end(); ++a) {
+        for (auto b = a + 1; b != players.end(); ++b) {
+            if (*a != *b) {
+                for (int i = 0; i < rounds; ++i) {
+                    cooperation coopA = (*a)->strategy();
+                    cooperation coopB = (*b)->strategy();
+                    if (coopA && coopB) { (*a)->incrementScore(R); (*b)->incrementScore(R); }
+                    if (coopA && !coopB) { (*a)->incrementScore(S); (*b)->incrementScore(T); }
+                    if (!coopA && coopB) { (*a)->incrementScore(T); (*b)->incrementScore(S); }
+                    if (!coopA && !coopB) { (*a)->incrementScore(P); (*b)->incrementScore(P); }
+                }
+            }
+        }
+    }
+    for (const auto player : players) { player->print(); }
+}
+
+void GameManager::addPlayer(Player* player) { players.push_back(player); }
