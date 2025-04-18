@@ -14,15 +14,18 @@ class GameManager {
 
     vector<Player*> players;
     int R, P, T, S, rounds;
-    GameManager();  // hiding default constructor
+    GameManager();  // hiding default constructor, not sure if it's necesary
 
 public:
 
-    GameManager(const vector<Player*>& players, int rounds, int R, int P, int T, int S);
+    GameManager(int rounds, int R, int P, int T, int S);
+
+    ~GameManager();
 
     void runGame() const;
 
-    ~GameManager();
+    void addPlayer(Player*);
+
 };
 
 #endif //GAMEMANAGER_H
