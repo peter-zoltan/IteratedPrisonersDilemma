@@ -7,9 +7,9 @@
 #include "memtrace.h"
 
 
-int Player::IDnum = 0;
+int Player::IDcounter = 0;
 
-Player::Player() : ID(IDnum) { IDnum++; }
+Player::Player() : ID(IDcounter) { IDcounter++; }
 
 void Player::resetId() { ID = 0; }
 
@@ -26,6 +26,11 @@ void SelfishPrisoner::print () const {
     std::cout << "Selfish #"<< ID << " score: " << score << std::endl;
 }
 
+Player* SelfishPrisoner::clone() const {
+    auto* clone = new SelfishPrisoner();
+    return clone;
+}
+
 
 /**
  * @return returns pointer to dynamically allocated type PrisonerChoice with false wrapped value
@@ -33,3 +38,8 @@ void SelfishPrisoner::print () const {
 cooperation LoyalPrisoner::strategy() const { return true; }
 
 void LoyalPrisoner::print () const { std::cout << "Loyal #" << ID << " score: " << score  << std::endl; }
+
+Player* LoyalPrisoner::clone() const {
+    auto* clone = new LoyalPrisoner();
+    return clone;
+}

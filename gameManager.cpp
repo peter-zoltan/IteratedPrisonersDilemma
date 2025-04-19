@@ -10,10 +10,16 @@
 GameManager::GameManager(int rounds, int R, int P, int T, int S)
     : rounds(rounds), R(R), P(P), T(T), S(S) {}
 
+GameManager::GameManager(const GameManager& GM)
+    : rounds(GM.rounds), R(GM.R), P(GM.P), T(GM.T), S(GM.S) {
+    for (auto player : GM.players) {
+        addPlayer(player->clone());
+    }
+}
 
 GameManager::~GameManager() {
-    for (auto player = players.begin(); player != players.end(); ++player) {
-        delete *player;
+    for (auto & player : players) {
+        delete player;
     }
 }
 

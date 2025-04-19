@@ -20,6 +20,8 @@ public:
 
     GameManager(int rounds, int R, int P, int T, int S);
 
+    GameManager(const GameManager&);
+
     ~GameManager();
 
     void runGame() const;

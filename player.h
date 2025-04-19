@@ -21,7 +21,7 @@ class Player {
 
 protected:
 
-    static int IDnum;
+    static int IDcounter;
     int ID;
     int score = 0;
     vector<cooperation> memory;
@@ -43,6 +43,8 @@ public:
     void resetId();
 
     void incrementScore(int increment);
+
+    virtual Player* clone() const = 0;
 };
 
 
@@ -58,6 +60,8 @@ public:
 
     void print () const override;
 
+    Player* clone() const override;
+
 };
 
 
@@ -72,6 +76,8 @@ public:
     cooperation strategy () const override;
 
     void print () const override;
+
+    Player* clone() const override;
 
 };
 
