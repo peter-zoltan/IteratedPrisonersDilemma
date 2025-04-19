@@ -42,3 +42,4 @@ void GameManager::runGame () const {
 }
 
 void GameManager::addPlayer(Player* player) { players.push_back(player); }
+
