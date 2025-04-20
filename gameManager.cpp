@@ -6,6 +6,7 @@
 
 #include "memtrace.h"
 
+bool GameManager::concise = true;
 
 GameManager::GameManager(int rounds, int R, int P, int T, int S)
     : rounds(rounds), R(R), P(P), T(T), S(S) {}

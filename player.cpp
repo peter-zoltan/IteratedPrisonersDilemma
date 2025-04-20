@@ -3,9 +3,11 @@
 //
 
 #include "player.h"
+#include "gameManager.h"
 
 #include "memtrace.h"
 
+using std::endl;
 
 int Player::IDcounter = 0;
 
@@ -19,14 +21,22 @@ int Player::getScore() const { return score; }
 
 int Player::getID() const { return ID; }
 
-std::ostream& operator<<(std::ostream& os, const Player& p) { return p.print(os); }
+std::ostream& operator<<(std::ostream& os, const Player& p) {
+    if (GameManager::concise) { return p.print(os); }
+    else return p.descript(os);
+}
 
 //
 
 cooperation SelfishPrisoner::strategy() const { return false; }
 
 std::ostream& SelfishPrisoner::print(std::ostream& os) const {
-    os << "Selfish #"<< ID << " score: " << score << std::endl;
+    os << "Selfish #"<< ID << " score: " << score << endl;
+    return os;
+}
+
+std::ostream& SelfishPrisoner::descript(std::ostream& os) const {
+    os << "Selfish" << endl << "[Always defects.]" << endl;
     return os;
 }
 
@@ -37,14 +47,19 @@ Player* SelfishPrisoner::clone() const {
 
 //
 
-cooperation LoyalPrisoner::strategy() const { return true; }
+cooperation NaivePrisoner::strategy() const { return true; }
 
-std::ostream& LoyalPrisoner::print(std::ostream& os) const {
-    std::cout << "Loyal #" << ID << " score: " << score  << std::endl;
+std::ostream& NaivePrisoner::print(std::ostream& os) const {
+    std::cout << "Naive #" << ID << " score: " << score  << std::endl;
     return os;
 }
 
-Player* LoyalPrisoner::clone() const {
-    auto* clone = new LoyalPrisoner();
+std::ostream& NaivePrisoner::descript(std::ostream& os) const {
+    os << "Naive" << endl << "[Always cooperates.]" << endl;
+    return os;
+}
+
+Player* NaivePrisoner::clone() const {
+    auto* clone = new NaivePrisoner();
     return clone;
 }

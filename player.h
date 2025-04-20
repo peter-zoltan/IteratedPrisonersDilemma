@@ -38,7 +38,9 @@ public:
      */
     virtual cooperation strategy() const = 0;
 
-    virtual std::ostream& print (std::ostream&) const = 0;
+    virtual std::ostream& print(std::ostream&) const = 0;
+
+    virtual std::ostream& descript(std::ostream&) const = 0;
 
     void resetId();
 
@@ -65,22 +67,26 @@ public:
 
     std::ostream& print(std::ostream&) const override;
 
+    std::ostream& descript(std::ostream&) const override;
+
     Player* clone() const override;
 
 };
 
 
 /**
- * @class LoyalPrisoner
+ * @class NaivePrisoner
  * never snitches
  */
-class LoyalPrisoner : public Player {
+class NaivePrisoner : public Player {
 
 public:
 
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
+
+    std::ostream& descript(std::ostream&) const override;
 
     Player* clone() const override;
 

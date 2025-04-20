@@ -18,6 +18,8 @@ class GameManager {
 
 public:
 
+    static bool concise;
+
     GameManager(int rounds, int R, int P, int T, int S);
 
     GameManager(const GameManager&);

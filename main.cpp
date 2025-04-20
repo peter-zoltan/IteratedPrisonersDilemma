@@ -9,12 +9,6 @@
 
 int main() {
 
-
-    GameManager test1(3, 10, 5, 15, 1);
-    test1.addPlayer(new SelfishPrisoner);
-    GameManager test2 = test1;
-
-
     bool running = true;
     Menu menu;
     while (running) {
@@ -22,7 +16,6 @@ int main() {
         menu.playerSelection(GM);
         GM.runGame();
         menu.gameComplete(running, GM);
-        std::cout << GM;
     }
 
 }
