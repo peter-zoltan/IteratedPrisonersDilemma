@@ -13,7 +13,7 @@ int Player::IDcounter = 0;
 
 Player::Player() : ID(IDcounter) { IDcounter++; }
 
-void Player::resetId() { ID = 0; }
+void Player::resetId() { IDcounter = 0; }
 
 void Player::incrementScore(int increment) { score += increment; }
 

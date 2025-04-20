@@ -25,9 +25,10 @@ GameManager Menu::initialize() const {
 
 void Menu::playerSelection(GameManager& GM) const {
     GameManager::concise = false;
+    cout << "Choose players to participate:" << endl << endl;
     SelfishPrisoner selfish;    cout << selfish << endl;
     NaivePrisoner naive;        cout << naive << endl;
-
+    Player::resetId();
     GM.addPlayer(new SelfishPrisoner());
     GM.addPlayer(new NaivePrisoner());
 }

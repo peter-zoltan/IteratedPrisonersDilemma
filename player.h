@@ -42,7 +42,7 @@ public:
 
     virtual std::ostream& descript(std::ostream&) const = 0;
 
-    void resetId();
+    static void resetId();
 
     void incrementScore(int increment);
 
