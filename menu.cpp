@@ -5,6 +5,8 @@
 #include "menu.h"
 #include "fileManager.h"
 
+#include "memtrace.h"
+
 GameManager Menu::initialize() const {
     int rounds, R, P, T, S;
     std::cin >> rounds >> R >> P >> T >> S;

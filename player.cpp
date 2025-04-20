@@ -15,15 +15,19 @@ void Player::resetId() { ID = 0; }
 
 void Player::incrementScore(int increment) { score += increment; }
 
+int Player::getScore() const { return score; }
 
+int Player::getID() const { return ID; }
 
-/**
- * @return returns pointer to dynamically allocated type PrisonerChoice with true wrapped value
- */
+std::ostream& operator<<(std::ostream& os, const Player& p) { return p.print(os); }
+
+//
+
 cooperation SelfishPrisoner::strategy() const { return false; }
 
-void SelfishPrisoner::print () const {
-    std::cout << "Selfish #"<< ID << " score: " << score << std::endl;
+std::ostream& SelfishPrisoner::print(std::ostream& os) const {
+    os << "Selfish #"<< ID << " score: " << score << std::endl;
+    return os;
 }
 
 Player* SelfishPrisoner::clone() const {
@@ -31,13 +35,14 @@ Player* SelfishPrisoner::clone() const {
     return clone;
 }
 
+//
 
-/**
- * @return returns pointer to dynamically allocated type PrisonerChoice with false wrapped value
- */
 cooperation LoyalPrisoner::strategy() const { return true; }
 
-void LoyalPrisoner::print () const { std::cout << "Loyal #" << ID << " score: " << score  << std::endl; }
+std::ostream& LoyalPrisoner::print(std::ostream& os) const {
+    std::cout << "Loyal #" << ID << " score: " << score  << std::endl;
+    return os;
+}
 
 Player* LoyalPrisoner::clone() const {
     auto* clone = new LoyalPrisoner();

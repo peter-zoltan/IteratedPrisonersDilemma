@@ -38,8 +38,13 @@ void GameManager::runGame () const {
             }
         }
     }
-    for (const auto player : players) { player->print(); }
 }
 
 void GameManager::addPlayer(Player* player) { players.push_back(player); }
 
+std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
+    for (auto player : gm.players) {
+        os << *player;
+    }
+    return os;
+}

@@ -22,6 +22,7 @@ int main() {
         menu.playerSelection(GM);
         GM.runGame();
         menu.gameComplete(running, GM);
+        std::cout << GM;
     }
 
 }

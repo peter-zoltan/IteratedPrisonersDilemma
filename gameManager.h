@@ -14,7 +14,7 @@ class GameManager {
 
     vector<Player*> players;
     int R, P, T, S, rounds;
-    GameManager();  // hiding default constructor, not sure if it's necesary
+    GameManager() {};  // hiding default constructor, not sure if it's necesary
 
 public:
 
@@ -28,6 +28,9 @@ public:
 
     void addPlayer(Player*);
 
+    friend std::ostream& operator<<(std::ostream& os, const GameManager& gm);
+
 };
+std::ostream& operator<<(std::ostream& os, const GameManager& gm);
 
 #endif //GAMEMANAGER_H

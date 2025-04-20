@@ -36,16 +36,21 @@ public:
      * determines what actions the player takes
      * optionally uses the player's memory
      */
-    virtual cooperation strategy () const = 0;
+    virtual cooperation strategy() const = 0;
 
-    virtual void print (void) const = 0;
+    virtual std::ostream& print (std::ostream&) const = 0;
 
     void resetId();
 
     void incrementScore(int increment);
 
+    int getScore() const;
+
+    int getID() const;
+
     virtual Player* clone() const = 0;
 };
+std::ostream& operator<<(std::ostream& os, const Player&);
 
 
 /**
@@ -56,9 +61,9 @@ class SelfishPrisoner : public Player {
 
 public:
 
-    cooperation strategy () const override;
+    cooperation strategy() const override;
 
-    void print () const override;
+    std::ostream& print(std::ostream&) const override;
 
     Player* clone() const override;
 
@@ -73,9 +78,9 @@ class LoyalPrisoner : public Player {
 
 public:
 
-    cooperation strategy () const override;
+    cooperation strategy() const override;
 
-    void print () const override;
+    std::ostream& print(std::ostream&) const override;
 
     Player* clone() const override;
 
