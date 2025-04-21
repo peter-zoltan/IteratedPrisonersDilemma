@@ -30,6 +30,8 @@ public:
 
     void addPlayer(Player*);
 
+    void sort();
+
     friend std::ostream& operator<<(std::ostream& os, const GameManager& gm);
 
 };

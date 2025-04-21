@@ -10,7 +10,7 @@ class Menu {
 public:
     GameManager initialize() const;
     void playerSelection(GameManager&) const;
-    void gameComplete(bool&, const GameManager&) const;
+    void gameComplete(bool&, GameManager&) const;
     void save(const GameManager&) const;
 };
 

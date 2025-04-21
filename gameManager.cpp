@@ -43,7 +43,10 @@ void GameManager::runGame () const {
 
 void GameManager::addPlayer(Player* player) { players.push_back(player); }
 
+void GameManager::sort() {}
+
 std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
+    os << "Rounds played: " << gm.rounds << std::endl << std::endl;
     for (auto player : gm.players) {
         os << *player;
     }

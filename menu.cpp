@@ -33,12 +33,16 @@ void Menu::playerSelection(GameManager& GM) const {
     GM.addPlayer(new NaivePrisoner());
 }
 
-void Menu::gameComplete(bool& running, const GameManager& GM) const {
+void Menu::gameComplete(bool& running, GameManager& GM) const {
     GameManager::concise = true;
+    GM.sort();
     cout << GM;
     running = false;
 }
 
 void Menu::save(const GameManager& GM) const {
     FileManager FM;
+    std::string filename;
+    std::getline(std::cin, filename);
+    FM.saveToFile(filename.c_str());
 }
