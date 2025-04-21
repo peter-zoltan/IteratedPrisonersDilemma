@@ -23,7 +23,7 @@ int Player::getID() const { return ID; }
 
 std::ostream& operator<<(std::ostream& os, const Player& p) {
     if (GameManager::concise) { return p.print(os); }
-    else return p.descript(os);
+    return p.descript(os);
 }
 
 //

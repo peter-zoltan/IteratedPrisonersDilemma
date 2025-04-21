@@ -44,5 +44,5 @@ void Menu::save(const GameManager& GM) const {
     FileManager FM;
     std::string filename;
     std::getline(std::cin, filename);
-    FM.saveToFile(filename.c_str());
+    FM.saveToFile(filename.c_str(), GM);
 }

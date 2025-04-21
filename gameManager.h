@@ -14,7 +14,6 @@ class GameManager {
 
     vector<Player*> players;
     int R, P, T, S, rounds;
-    GameManager() {};  // hiding default constructor, not sure if it's necesary
 
 public:
 
