@@ -3,7 +3,7 @@
 //
 
 /** \file player.h
- * Header for the class Player and it's inheritors.
+ * Header file for the class Player and it's inheritors.
  */
 
 #ifndef PLAYER_H
@@ -14,9 +14,10 @@
 using std::vector;
 
 /** \typedef cooperation
- * Nicer name for boolean.
+ * Alias for boolean for intuitive understanding of mapping of true/false to cooperation/defection.
  */
 typedef bool cooperation;
+
 
 /**
  * @class Player
@@ -27,12 +28,13 @@ class Player {
 
 protected:
 
-    static int IDcounter;          /// Static integer incremented with every new object.
-    int ID;                        /// Differentiates the object from others of the exact same type.
-    int score = 0;                 /// Score gathered in the game.
-    vector<cooperation> memory;    /// List of actions taken by the opponent in a given match.
+    static int IDcounter;          /**< Static integer incremented with every new object.              */
+    int ID;                        /**< Differentiates the object from others of the exact same type.  */
+    int score = 0;                 /**< Score gathered in the game.                                    */
+    vector<cooperation> memory;    /**< List of actions taken by the opponent in a given match.        */
 
 public:
+
     /**
      * Constructor, initializes the object's ID, then increments the static member.
      */
@@ -50,15 +52,15 @@ public:
     virtual cooperation strategy() const = 0;
 
     /**
-     * @param os The stream to where the function will write.
      * Prints the object's type, ID and score.
-     * @return Returns the stream
+     * @param os : The stream to where the function will write.
+     * @return Returns the stream given as parameter.
      */
     virtual std::ostream& print(std::ostream& os) const = 0;
 
-     /**
-     * @param os The stream to where the function will write.
+    /**
      * Prints the object's type and a brief description of it's strategy.
+     * @param os : The stream to where the function will write.
      * @return Returns the stream given as parameter.
      */
     virtual std::ostream& descript(std::ostream& os) const = 0;
@@ -69,8 +71,8 @@ public:
     static void resetId();
 
     /**
+     * Increments member score by the given parameter.
      * @param increment The amount by which member score is incremented.
-     * Increments member score by the parameter.
      */
     void incrementScore(int increment);
 
@@ -91,11 +93,12 @@ public:
      * @return Returns pointer to the created object.
      */
     virtual Player* clone() const = 0;
+
 };
 
 /**
- * @param os The stream to where the operator will write.
  * Calls Player::print() if boolean GameManager::concise is true, otherwise calls Player::descript().
+ * @param os : The stream to where the operator will write (the stream that will be passed on as a parameter).
  * @return Returns the stream given as parameter.
  */
 std::ostream& operator<<(std::ostream& os, const Player&);
