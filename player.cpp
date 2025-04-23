@@ -9,6 +9,7 @@
 
 using std::endl;
 
+
 int Player::IDcounter = 0;
 
 Player::Player() : ID(IDcounter) { IDcounter++; }
