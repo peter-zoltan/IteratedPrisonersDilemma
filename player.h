@@ -2,67 +2,117 @@
 // Created by peter on 2025. 03. 11..
 //
 
+/** \file player.h
+ * Header for the class Player and it's inheritors.
+ */
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
 #include <iostream>
-#include <ostream>
 #include <vector>
 using std::vector;
 
+/** \typedef cooperation
+ * Nicer name for boolean.
+ */
 typedef bool cooperation;
 
 /**
  * @class Player
- * abstract class, does not define type of game or strategy as is
- * optionally has a memory of their opponents past action(s) within the match
+ * Abstract class, strategies are defined in it's inheritors.
+ * Stores their own score as well as their opponents past actions within the match.
  */
 class Player {
 
 protected:
 
-    static int IDcounter;
-    int ID;
-    int score = 0;
-    vector<cooperation> memory;
+    static int IDcounter;          /// Static integer incremented with every new object.
+    int ID;                        /// Differentiates the object from others of the exact same type.
+    int score = 0;                 /// Score gathered in the game.
+    vector<cooperation> memory;    /// List of actions taken by the opponent in a given match.
 
 public:
-
+    /**
+     * Constructor, initializes the object's ID, then increments the static member.
+     */
     Player();
 
+    /**
+     * Virtual destructor.
+     */
     virtual ~Player() = default;
 
     /**
-     * determines what actions the player takes
-     * optionally uses the player's memory
+     * Determines whether the player cooperates or defects.
+     * Optionally uses the player's memory.
      */
     virtual cooperation strategy() const = 0;
 
-    virtual std::ostream& print(std::ostream&) const = 0;
+    /**
+     * @param os The stream to where the function will write.
+     * Prints the object's type, ID and score.
+     * @return Returns the stream
+     */
+    virtual std::ostream& print(std::ostream& os) const = 0;
 
-    virtual std::ostream& descript(std::ostream&) const = 0;
+     /**
+     * @param os The stream to where the function will write.
+     * Prints the object's type and a brief description of it's strategy.
+     * @return Returns the stream given as parameter.
+     */
+    virtual std::ostream& descript(std::ostream& os) const = 0;
 
+    /**
+     * Sets static member IDcounter to 0.
+     */
     static void resetId();
 
+    /**
+     * @param increment The amount by which member score is incremented.
+     * Increments member score by the parameter.
+     */
     void incrementScore(int increment);
 
+    /**
+     * Getter for member score.
+     * @return Returns the integer value of member score.
+     */
     int getScore() const;
 
+    /**
+     * Getter for member ID.
+     * @return Returns the integer value of member ID.
+     */
     int getID() const;
 
+    /**
+     * Creates another object of the same type.
+     * @return Returns pointer to the created object.
+     */
     virtual Player* clone() const = 0;
 };
+
+/**
+ * @param os The stream to where the operator will write.
+ * Calls Player::print() if boolean GameManager::concise is true, otherwise calls Player::descript().
+ * @return Returns the stream given as parameter.
+ */
 std::ostream& operator<<(std::ostream& os, const Player&);
 
 
 /**
  * @class SelfishPrisoner
- * snitches every time
+ * Inheritor of abstract class Player.
+ * Snitches every time.
  */
 class SelfishPrisoner : public Player {
 
 public:
 
+    /**
+     * @return Returns false.
+     */
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
@@ -76,12 +126,16 @@ public:
 
 /**
  * @class NaivePrisoner
- * never snitches
+ * Inheritor of abstract class Player.
+ * Cooperates every time.
  */
 class NaivePrisoner : public Player {
 
 public:
 
+    /**
+     * @return Returns true.
+     */
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
