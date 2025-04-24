@@ -2,6 +2,11 @@
 // Created by peter on 2025. 04. 19..
 //
 
+/**
+ * @file menu.cpp
+ * Source file for the class Menu.
+ */
+
 #include "menu.h"
 #include "fileManager.h"
 

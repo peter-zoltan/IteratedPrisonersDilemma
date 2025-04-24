@@ -72,7 +72,7 @@ public:
     /**
      * Friend operator, prints the number of rounds played, and the players' information.
      * @param os The stream to where the operator will write.
-     * @param gm The instance from which the data printed is taken.
+     * @param gm Reference to the instance from which the data printed is taken.
      * @return Returns the stream given as parameter.
      */
     friend std::ostream& operator<<(std::ostream& os, const GameManager& gm);
