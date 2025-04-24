@@ -41,7 +41,9 @@ void Menu::playerSelection(GameManager& GM) const {
 void Menu::gameComplete(bool& running, GameManager& GM) const {
     GameManager::concise = true;
     GM.sort();
-    cout << GM;
+    cout << GM << endl << "press any key to exit: ";
+    char temp;
+    cin >> temp;
     running = false;
 }
 
