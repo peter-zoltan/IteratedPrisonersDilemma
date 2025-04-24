@@ -22,11 +22,11 @@ using std::vector;
 class GameManager {
 
     vector<Player*> players;    /**< List of players participating in the game. */
+    int rounds;                 /**< Number of rounds to be played each match.  */
     int R;                      /**< Point value of mutual cooperation.         */
     int P;                      /**< Point value of mutual defection.           */
     int T;                      /**< Point value of one-sided defection.        */
     int S;                      /**< Point value of one-sided cooperation.      */
-    int rounds;                 /**< Number of rounds to be played each match.  */
 
 public:
 
