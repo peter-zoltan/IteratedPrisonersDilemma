@@ -68,3 +68,19 @@ Player* NaivePrisoner::clone() const {
     auto* clone = new NaivePrisoner();
     return clone;
 }
+
+//
+
+// !!implement - just so that is has a return value for now
+cooperation VengefulPrisoner::strategy() const {
+    return true;
+}
+
+std::ostream& VengefulPrisoner::print(std::ostream& os) const { return os; }
+
+std::ostream& VengefulPrisoner::descript(std::ostream& os) const { return os; }
+
+Player* VengefulPrisoner::clone() const {
+    auto* clone = new VengefulPrisoner();
+    return clone;
+}

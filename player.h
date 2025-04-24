@@ -150,4 +150,28 @@ public:
 
 };
 
+
+/**
+ * @class VengefulPrisoner
+ * Inheritor of abstract class Player.
+ * Cooperates until their opponent defects for the first time,
+ * they then defect every round for the rest of the match.
+ */
+class VengefulPrisoner : public Player {
+
+public:
+
+    /**
+     * @return Returns true if the opponent has not defected in the match, otherwise returns false.
+     */
+    cooperation strategy() const override;
+
+    std::ostream& print(std::ostream&) const override;
+
+    std::ostream& descript(std::ostream&) const override;
+
+    Player* clone() const override;
+
+};
+
 #endif //PLAYER_H
