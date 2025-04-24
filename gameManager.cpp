@@ -2,6 +2,11 @@
 // Created by peter on 2025. 03. 11..
 //
 
+/**
+ * @file gameManager.cpp
+ * Source file for the class GameManager.
+ */
+
 #include "gameManager.h"
 
 #include "memtrace.h"

@@ -2,7 +2,8 @@
 // Created by peter on 2025. 03. 11..
 //
 
-/** \file player.h
+/**
+ * @file player.h
  * Header file for the class Player and it's inheritors.
  */
 
@@ -13,7 +14,7 @@
 #include <vector>
 using std::vector;
 
-/** \typedef cooperation
+/** @typedef cooperation
  * Alias for boolean for intuitive understanding of mapping of true/false to cooperation/defection.
  */
 typedef bool cooperation;
@@ -28,15 +29,15 @@ class Player {
 
 protected:
 
-    static int IDcounter;          /**< Static integer incremented with every new object.              */
-    int ID;                        /**< Differentiates the object from others of the exact same type.  */
-    int score = 0;                 /**< Score gathered in the game.                                    */
-    vector<cooperation> memory;    /**< List of actions taken by the opponent in a given match.        */
+    static int IDcounter;          /**< Static integer incremented with every new instance.              */
+    int ID;                        /**< Differentiates the instance from others of the exact same type.  */
+    int score = 0;                 /**< Score gathered in the game.                                      */
+    vector<cooperation> memory;    /**< List of actions taken by the opponent in a given match.          */
 
 public:
 
     /**
-     * Constructor, initializes the object's ID, then increments the static member.
+     * Constructor, initializes the instance's ID, then increments the static member variable IDcounter.
      */
     Player();
 
@@ -52,44 +53,44 @@ public:
     virtual cooperation strategy() const = 0;
 
     /**
-     * Prints the object's type, ID and score.
+     * Prints the instance's type, ID and score.
      * @param os : The stream to where the function will write.
      * @return Returns the stream given as parameter.
      */
     virtual std::ostream& print(std::ostream& os) const = 0;
 
     /**
-     * Prints the object's type and a brief description of it's strategy.
+     * Prints the instance's type and a brief description of it's strategy.
      * @param os : The stream to where the function will write.
      * @return Returns the stream given as parameter.
      */
     virtual std::ostream& descript(std::ostream& os) const = 0;
 
     /**
-     * Sets static member IDcounter to 0.
+     * Sets static member variable IDcounter to 0.
      */
     static void resetId();
 
     /**
      * Increments member score by the given parameter.
-     * @param increment The amount by which member score is incremented.
+     * @param increment The amount by which member variable score is incremented.
      */
     void incrementScore(int increment);
 
     /**
      * Getter for member score.
-     * @return Returns the integer value of member score.
+     * @return Returns the integer value of member variable score.
      */
     int getScore() const;
 
     /**
      * Getter for member ID.
-     * @return Returns the integer value of member ID.
+     * @return Returns the integer value of member variable ID.
      */
     int getID() const;
 
     /**
-     * Creates another object of the same type.
+     * Creates another instance of the same type.
      * @return Returns pointer to the created object.
      */
     virtual Player* clone() const = 0;
@@ -98,7 +99,7 @@ public:
 
 /**
  * Calls Player::print() if boolean GameManager::concise is true, otherwise calls Player::descript().
- * @param os : The stream to where the operator will write (the stream that will be passed on as a parameter).
+ * @param os : The stream to where the operator will write.
  * @return Returns the stream given as parameter.
  */
 std::ostream& operator<<(std::ostream& os, const Player&);

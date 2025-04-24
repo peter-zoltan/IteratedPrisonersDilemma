@@ -2,6 +2,10 @@
 // Created by peter on 2025. 03. 11..
 //
 
+/** @file player.cpp
+ * Source file for the class Player and it's inheritors.
+ */
+
 #include "player.h"
 #include "gameManager.h"
 
