@@ -10,7 +10,7 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
-#include "Player.h"
+#include "player.h"
 #include <vector>
 using std::vector;
 
