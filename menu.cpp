@@ -16,6 +16,23 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+void Menu::checkLine(GameManager& gm) const {
+    std::string line;
+    cout << "Add player(s): ";
+    cin.ignore(1);
+    getline(cin, line);
+    int i = 0;
+    while (line[i] != '\0') {
+        line[i] = tolower(line[i]);
+        i++;
+    }
+    if (line.find("selfish") != std::string::npos) {
+        gm.addPlayer(new SelfishPrisoner());
+        cout << "Selfish prisoner added." << endl;
+    }
+}
+
+
 GameManager Menu::initialize() const {
     int rounds, R, P, T, S;
     cout << "Number of rounds each match: ";        cin >> rounds;
@@ -36,6 +53,9 @@ void Menu::playerSelection(GameManager& GM) const {
     Player::resetId();
     GM.addPlayer(new SelfishPrisoner());
     GM.addPlayer(new NaivePrisoner());
+    cout << endl;
+    checkLine(GM);
+    cout << endl;
 }
 
 void Menu::gameComplete(bool& running, GameManager& GM) const {

@@ -17,6 +17,8 @@
  */
 class Menu {
 
+    void checkLine(GameManager& gm) const;
+
 public:
 
     /**
