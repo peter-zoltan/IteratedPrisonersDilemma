@@ -26,6 +26,12 @@ int Player::getScore() const { return score; }
 
 int Player::getID() const { return ID; }
 
+void Player::remember(cooperation coop) { memory.push_back(coop); }
+
+void Player::forget() { memory.clear(); }
+
+bool Player::greaterThan(const Player& other) const { return score > other.score; }
+
 std::ostream& operator<<(std::ostream& os, const Player& p) {
     if (GameManager::concise) { return p.print(os); }
     return p.descript(os);
@@ -55,7 +61,7 @@ Player* SelfishPrisoner::clone() const {
 cooperation NaivePrisoner::strategy() const { return true; }
 
 std::ostream& NaivePrisoner::print(std::ostream& os) const {
-    std::cout << "Naive #" << ID << " score: " << score  << std::endl;
+    os << "Naive #" << ID << " score: " << score  << endl;
     return os;
 }
 
@@ -73,12 +79,21 @@ Player* NaivePrisoner::clone() const {
 
 // !!implement - just so that is has a return value for now
 cooperation VengefulPrisoner::strategy() const {
+    for (const bool i : memory) {
+        if(!i) { return false; }
+    }
     return true;
 }
 
-std::ostream& VengefulPrisoner::print(std::ostream& os) const { return os; }
+std::ostream& VengefulPrisoner::print(std::ostream& os) const {
+    os << "Vengeful #" << ID << " score: " << score << endl;
+    return os;
+}
 
-std::ostream& VengefulPrisoner::descript(std::ostream& os) const { return os; }
+std::ostream& VengefulPrisoner::descript(std::ostream& os) const {
+    os << "Vengeful" << endl << "[Cooperates until the other player defects for the first time in the match.]";
+    return os;
+}
 
 Player* VengefulPrisoner::clone() const {
     auto* clone = new VengefulPrisoner();

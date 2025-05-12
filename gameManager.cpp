@@ -40,7 +40,11 @@ void GameManager::runGame () const {
                     if (coopA && !coopB) { (*a)->incrementScore(S); (*b)->incrementScore(T); }
                     if (!coopA && coopB) { (*a)->incrementScore(T); (*b)->incrementScore(S); }
                     if (!coopA && !coopB) { (*a)->incrementScore(P); (*b)->incrementScore(P); }
+                    (*a)->remember(coopB);
+                    (*b)->remember(coopA);
                 }
+                (*a)->forget();
+                (*b)->forget();
             }
         }
     }
@@ -48,7 +52,9 @@ void GameManager::runGame () const {
 
 void GameManager::addPlayer(Player* player) { players.push_back(player); }
 
-void GameManager::sort() {}
+void GameManager::sort() {
+    std::sort(players.begin(), players.end(), [](const Player* a, const Player* b) { return a->greaterThan(*b); });
+}
 
 std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
     os << "Rounds played: " << gm.rounds << std::endl << std::endl;

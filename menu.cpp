@@ -32,6 +32,10 @@ void Menu::getPlayer(GameManager& gm) const {
         gm.addPlayer(new NaivePrisoner());
         cout << "Naive prisoner added." << endl;
     }
+    if (line.find("vengeful") != std::string::npos) {
+        gm.addPlayer(new VengefulPrisoner());
+        cout << "Vengeful prisoner added." << endl;
+    }
 }
 
 

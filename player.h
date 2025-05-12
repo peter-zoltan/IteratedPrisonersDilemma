@@ -95,6 +95,17 @@ public:
      */
     virtual Player* clone() const = 0;
 
+    /**
+     *
+     * @param coop
+     * @return
+     */
+    void remember(cooperation coop);
+
+    void forget();
+
+    bool greaterThan(const Player& other) const;
+
 };
 
 /**
@@ -158,6 +169,8 @@ public:
  * they then defect every round for the rest of the match.
  */
 class VengefulPrisoner : public Player {
+
+    bool wronged = false;
 
 public:
 
