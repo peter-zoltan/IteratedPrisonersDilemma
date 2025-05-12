@@ -16,19 +16,21 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-void Menu::checkLine(GameManager& gm) const {
+void Menu::getPlayer(GameManager& gm) const {
     std::string line;
     cout << "Add player(s): ";
     cin.ignore(1);
     getline(cin, line);
-    int i = 0;
-    while (line[i] != '\0') {
+    for (int i = 0; line[i] != '\0'; i++) {
         line[i] = tolower(line[i]);
-        i++;
     }
     if (line.find("selfish") != std::string::npos) {
         gm.addPlayer(new SelfishPrisoner());
         cout << "Selfish prisoner added." << endl;
+    }
+    if (line.find("naive") != std::string::npos) {
+        gm.addPlayer(new NaivePrisoner());
+        cout << "Naive prisoner added." << endl;
     }
 }
 
@@ -51,10 +53,14 @@ void Menu::playerSelection(GameManager& GM) const {
     SelfishPrisoner selfish;    cout << selfish << endl;
     NaivePrisoner naive;        cout << naive << endl;
     Player::resetId();
-    GM.addPlayer(new SelfishPrisoner());
-    GM.addPlayer(new NaivePrisoner());
-    cout << endl;
-    checkLine(GM);
+    cout << endl << "Add player(s) [1]" << endl << "Start game [2]" << endl;
+    char input;
+    cin >> input;
+    switch (input) {
+        case '1': getPlayer(GM); break;
+        case '2': break;
+        default: cout << "Invalid input." << endl; break;
+    }
     cout << endl;
 }
 

@@ -17,7 +17,7 @@
  */
 class Menu {
 
-    void checkLine(GameManager& gm) const;
+    void getPlayer(GameManager& gm) const;
 
 public:
 
