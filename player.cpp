@@ -79,7 +79,7 @@ Player* Naive::clone() const {
 //
 
 cooperation Vengeful::strategy() const {
-    for (const bool i : memory) {
+    for (const cooperation i : memory) {
         if(!i) { return false; }
     }
     return true;
@@ -136,4 +136,20 @@ Player* Random::clone() const {
 }
 
 //
+
+cooperation Majority::strategy() const {
+    int countC = 0, countD = 0;
+    if (memory.empty()) { return true; }
+    for (const cooperation i : memory) {
+        if (i) { countC++; }
+        else { countD++; }
+    }
+    if (countC >= countD) { return true; }
+    return false;
+}
+
+Player* Majority::clone() const {
+    auto* clone = new Majority();
+    return clone;
+}
 

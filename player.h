@@ -222,6 +222,21 @@ public:
 };
 
 
-class
+/**
+ * @class Majority
+ */
+class Majority : public Player {
+
+public:
+
+    cooperation strategy() const override;
+
+    std::ostream& print(std::ostream&) const override;
+
+    std::ostream& descript(std::ostream&) const override;
+
+    Player* clone() const override;
+
+};
 
 #endif //PLAYER_H
