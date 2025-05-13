@@ -8,6 +8,7 @@
 
 #include "player.h"
 #include "gameManager.h"
+#include <random>
 
 #include "memtrace.h"
 
@@ -39,63 +40,100 @@ std::ostream& operator<<(std::ostream& os, const Player& p) {
 
 //
 
-cooperation SelfishPrisoner::strategy() const { return false; }
+cooperation Selfish::strategy() const { return false; }
 
-std::ostream& SelfishPrisoner::print(std::ostream& os) const {
+std::ostream& Selfish::print(std::ostream& os) const {
     os << "Selfish #"<< ID << " score: " << score << endl;
     return os;
 }
 
-std::ostream& SelfishPrisoner::descript(std::ostream& os) const {
+std::ostream& Selfish::descript(std::ostream& os) const {
     os << "Selfish" << endl << "[Always defects.]" << endl;
     return os;
 }
 
-Player* SelfishPrisoner::clone() const {
-    auto* clone = new SelfishPrisoner();
+Player* Selfish::clone() const {
+    auto* clone = new Selfish();
     return clone;
 }
 
 //
 
-cooperation NaivePrisoner::strategy() const { return true; }
+cooperation Naive::strategy() const { return true; }
 
-std::ostream& NaivePrisoner::print(std::ostream& os) const {
+std::ostream& Naive::print(std::ostream& os) const {
     os << "Naive #" << ID << " score: " << score  << endl;
     return os;
 }
 
-std::ostream& NaivePrisoner::descript(std::ostream& os) const {
+std::ostream& Naive::descript(std::ostream& os) const {
     os << "Naive" << endl << "[Always cooperates.]" << endl;
     return os;
 }
 
-Player* NaivePrisoner::clone() const {
-    auto* clone = new NaivePrisoner();
+Player* Naive::clone() const {
+    auto* clone = new Naive();
     return clone;
 }
 
 //
 
-// !!implement - just so that is has a return value for now
-cooperation VengefulPrisoner::strategy() const {
+cooperation Vengeful::strategy() const {
     for (const bool i : memory) {
         if(!i) { return false; }
     }
     return true;
 }
 
-std::ostream& VengefulPrisoner::print(std::ostream& os) const {
+std::ostream& Vengeful::print(std::ostream& os) const {
     os << "Vengeful #" << ID << " score: " << score << endl;
     return os;
 }
 
-std::ostream& VengefulPrisoner::descript(std::ostream& os) const {
+std::ostream& Vengeful::descript(std::ostream& os) const {
     os << "Vengeful" << endl << "[Cooperates until the other player defects for the first time in the match.]";
     return os;
 }
 
-Player* VengefulPrisoner::clone() const {
-    auto* clone = new VengefulPrisoner();
+Player* Vengeful::clone() const {
+    auto* clone = new Vengeful();
     return clone;
 }
+
+//
+
+cooperation Copycat::strategy() const {
+    if (memory.empty()) { return true; }
+    return memory.back();
+}
+
+std::ostream& Copycat::print(std::ostream& os) const {
+    os << "Copycat #" << ID << " score: " << score << endl;
+    return os;
+}
+
+std::ostream& Copycat::descript(std::ostream& os) const {
+    os << "Copycat" << endl << "[Copies the last choice made by their opponent, starts out with cooperation.]";
+    return os;
+}
+
+Player* Copycat::clone() const {
+    auto* clone = new Copycat();
+    return clone;
+}
+
+//
+
+cooperation Random::strategy() const {
+    return rand() > (RAND_MAX / 2);
+}
+
+// need print and descript if I dont change how those work
+
+Player* Random::clone() const {
+    auto* clone = new Random();
+    return clone;
+}
+
+//
+

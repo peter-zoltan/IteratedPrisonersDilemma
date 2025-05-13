@@ -13,7 +13,7 @@
 
 /**
  * Runs a game with parameters customized by the user through the standard IO
- * with an instance of SelfishPrisoner and NaivePrisoner, displays the
+ * with an instance of Selfish and Naive, displays the
  * unsorted results then exits on any button press + enter.
  */
 int main() {

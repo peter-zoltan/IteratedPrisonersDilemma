@@ -25,15 +25,15 @@ void Menu::getPlayer(GameManager& gm) const {
         line[i] = tolower(line[i]);
     }
     if (line.find("selfish") != std::string::npos) {
-        gm.addPlayer(new SelfishPrisoner());
+        gm.addPlayer(new Selfish());
         cout << "Selfish prisoner added." << endl;
     }
     if (line.find("naive") != std::string::npos) {
-        gm.addPlayer(new NaivePrisoner());
+        gm.addPlayer(new Naive());
         cout << "Naive prisoner added." << endl;
     }
     if (line.find("vengeful") != std::string::npos) {
-        gm.addPlayer(new VengefulPrisoner());
+        gm.addPlayer(new Vengeful());
         cout << "Vengeful prisoner added." << endl;
     }
 }
@@ -54,8 +54,9 @@ GameManager Menu::initialize() const {
 void Menu::playerSelection(GameManager& GM) const {
     GameManager::concise = false;
     cout << "Choose players to participate:" << endl << endl;
-    SelfishPrisoner selfish;    cout << selfish << endl;
-    NaivePrisoner naive;        cout << naive << endl;
+    Selfish selfish;    cout << selfish << endl;
+    Naive naive;        cout << naive << endl;
+    Vengeful vengeful;          cout << vengeful << endl;
     Player::resetId();
     cout << endl << "Add player(s) [1]" << endl << "Start game [2]" << endl;
     char input;

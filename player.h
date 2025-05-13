@@ -117,11 +117,11 @@ std::ostream& operator<<(std::ostream& os, const Player&);
 
 
 /**
- * @class SelfishPrisoner
+ * @class Selfish
  * Inheritor of abstract class Player.
  * Snitches every time.
  */
-class SelfishPrisoner : public Player {
+class Selfish : public Player {
 
 public:
 
@@ -140,11 +140,11 @@ public:
 
 
 /**
- * @class NaivePrisoner
+ * @class Naive
  * Inheritor of abstract class Player.
  * Cooperates every time.
  */
-class NaivePrisoner : public Player {
+class Naive : public Player {
 
 public:
 
@@ -163,12 +163,12 @@ public:
 
 
 /**
- * @class VengefulPrisoner
+ * @class Vengeful
  * Inheritor of abstract class Player.
  * Cooperates until their opponent defects for the first time,
  * they then defect every round for the rest of the match.
  */
-class VengefulPrisoner : public Player {
+class Vengeful : public Player {
 
     bool wronged = false;
 
@@ -186,5 +186,42 @@ public:
     Player* clone() const override;
 
 };
+
+/**
+ * @class Copycat
+ */
+class Copycat : public Player {
+
+public:
+
+    cooperation strategy() const override;
+
+    std::ostream& print(std::ostream&) const override;
+
+    std::ostream& descript(std::ostream&) const override;
+
+    Player* clone() const override;
+
+};
+
+/**
+ * @class Random
+ */
+class Random : public Player {
+
+public:
+
+    cooperation strategy() const override;
+
+    std::ostream& print(std::ostream&) const override;
+
+    std::ostream& descript(std::ostream&) const override;
+
+    Player* clone() const override;
+
+};
+
+
+class
 
 #endif //PLAYER_H
