@@ -54,9 +54,12 @@ GameManager Menu::initialize() const {
 void Menu::playerSelection(GameManager& GM) const {
     GameManager::concise = false;
     cout << "Choose players to participate:" << endl << endl;
-    Selfish selfish;    cout << selfish << endl;
-    Naive naive;        cout << naive << endl;
-    Vengeful vengeful;          cout << vengeful << endl;
+    Selfish selfish;        cout << selfish << endl;
+    Naive naive;            cout << naive << endl;
+    Vengeful vengeful;      cout << vengeful << endl;
+    Copycat copycat;        cout << copycat << endl;
+    Random random;          cout << random << endl;
+    Majority majority;      cout << majority << endl;
     Player::resetId();
     cout << endl << "Add player(s) [1]" << endl << "Start game [2]" << endl;
     char input;
@@ -66,7 +69,7 @@ void Menu::playerSelection(GameManager& GM) const {
         case '2': break;
         default: cout << "Invalid input." << endl; break;
     }
-    cout << endl;
+    //cout << endl;
 }
 
 void Menu::gameComplete(bool& running, GameManager& GM) const {

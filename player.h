@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 using std::vector;
+using std::string;
 
 /** @typedef cooperation
  * Alias for boolean for intuitive understanding of mapping of true/false to cooperation/defection.

@@ -91,7 +91,7 @@ std::ostream& Vengeful::print(std::ostream& os) const {
 }
 
 std::ostream& Vengeful::descript(std::ostream& os) const {
-    os << "Vengeful" << endl << "[Cooperates until the other player defects for the first time in the match.]";
+    os << "Vengeful" << endl << "[Cooperates until the other player defects for the first time in the match.]" << endl;
     return os;
 }
 
@@ -113,7 +113,7 @@ std::ostream& Copycat::print(std::ostream& os) const {
 }
 
 std::ostream& Copycat::descript(std::ostream& os) const {
-    os << "Copycat" << endl << "[Copies the last choice made by their opponent, starts out with cooperation.]";
+    os << "Copycat" << endl << "[Copies the last choice made by their opponent, starts out with cooperation.]" << endl;
     return os;
 }
 
@@ -128,7 +128,15 @@ cooperation Random::strategy() const {
     return rand() > (RAND_MAX / 2);
 }
 
-// need print and descript if I dont change how those work
+std::ostream& Random::print(std::ostream& os) const {
+    os << "Random #" << ID << " score: " << score << endl;
+    return os;
+}
+
+std::ostream& Random::descript(std::ostream& os) const {
+    os << "Random" << endl << "[Chooses between cooperation and defection at random.]" << endl;
+    return os;
+}
 
 Player* Random::clone() const {
     auto* clone = new Random();
@@ -146,6 +154,16 @@ cooperation Majority::strategy() const {
     }
     if (countC >= countD) { return true; }
     return false;
+}
+
+std::ostream& Majority::print(std::ostream& os) const {
+    os << "Majority #" << ID << " score: " << score << endl;
+    return os;
+}
+
+std::ostream& Majority::descript(std::ostream& os) const {
+    os << "Majority" << endl << "[Cooperates at first, then copies the choice their opponent has made more in the match.]" << endl;
+    return os;
 }
 
 Player* Majority::clone() const {
