@@ -137,6 +137,8 @@ public:
 
     Player* clone() const override;
 
+    static Player* wrap() { return new Selfish(); }
+
 };
 
 
@@ -159,6 +161,8 @@ public:
     std::ostream& descript(std::ostream&) const override;
 
     Player* clone() const override;
+
+    static Player* wrap() { return new Naive(); }
 
 };
 
@@ -186,6 +190,8 @@ public:
 
     Player* clone() const override;
 
+    static Player* wrap() { return new Vengeful(); }
+
 };
 
 /**
@@ -202,6 +208,8 @@ public:
     std::ostream& descript(std::ostream&) const override;
 
     Player* clone() const override;
+
+    static Player* wrap() { return new Copycat(); }
 
 };
 
@@ -220,6 +228,8 @@ public:
 
     Player* clone() const override;
 
+    static Player* wrap() { return new Random(); }
+
 };
 
 
@@ -237,6 +247,8 @@ public:
     std::ostream& descript(std::ostream&) const override;
 
     Player* clone() const override;
+
+    static Player* wrap() { return new Majority(); }
 
 };
 

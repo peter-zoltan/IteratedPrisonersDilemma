@@ -17,7 +17,11 @@
  */
 class Menu {
 
+    void checkPlayer(GameManager& gm, const string& line, const string& type, Player* (*newType)()) const;
+
     void getPlayer(GameManager& gm) const;
+
+    static void listPlayerTypes();
 
 public:
 

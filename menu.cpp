@@ -16,26 +16,43 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+void Menu::checkPlayer(GameManager& gm, const string& line, const string& type, Player* (*newType)()) const {
+    size_t start = 0;
+    size_t end = line.length() - 1;
+    string Type = type;
+    Type[0] = toupper(Type[0]);
+    while (start < end && line.substr(start, end).find(type) != std::string::npos) {
+        gm.addPlayer(newType());
+        cout << Type << " prisoner added." << endl;
+        start = start + line.substr(start, end).find(type) + type.length() - 1;
+    }
+}
+
 void Menu::getPlayer(GameManager& gm) const {
-    std::string line;
+    string line;
     cout << "Add player(s): ";
     cin.ignore(1);
     getline(cin, line);
     for (int i = 0; line[i] != '\0'; i++) {
         line[i] = tolower(line[i]);
     }
-    if (line.find("selfish") != std::string::npos) {
-        gm.addPlayer(new Selfish());
-        cout << "Selfish prisoner added." << endl;
-    }
-    if (line.find("naive") != std::string::npos) {
-        gm.addPlayer(new Naive());
-        cout << "Naive prisoner added." << endl;
-    }
-    if (line.find("vengeful") != std::string::npos) {
-        gm.addPlayer(new Vengeful());
-        cout << "Vengeful prisoner added." << endl;
-    }
+    checkPlayer(gm, line, "selfish", &Selfish::wrap);
+    checkPlayer(gm, line, "naive", &Naive::wrap);
+    checkPlayer(gm, line, "vengeful", &Vengeful::wrap);
+    checkPlayer(gm, line, "copycat", &Copycat::wrap);
+    checkPlayer(gm, line, "random", &Random::wrap);
+    checkPlayer(gm, line, "majority", &Majority::wrap);
+    cout << endl;
+}
+
+void Menu::listPlayerTypes() {
+    Selfish selfish;        cout << selfish << endl;
+    Naive naive;            cout << naive << endl;
+    Vengeful vengeful;      cout << vengeful << endl;
+    Copycat copycat;        cout << copycat << endl;
+    Random random;          cout << random << endl;
+    Majority majority;      cout << majority << endl;
+    Player::resetId();
 }
 
 
@@ -53,14 +70,7 @@ GameManager Menu::initialize() const {
 
 void Menu::playerSelection(GameManager& GM) const {
     GameManager::concise = false;
-    cout << "Choose players to participate:" << endl << endl;
-    Selfish selfish;        cout << selfish << endl;
-    Naive naive;            cout << naive << endl;
-    Vengeful vengeful;      cout << vengeful << endl;
-    Copycat copycat;        cout << copycat << endl;
-    Random random;          cout << random << endl;
-    Majority majority;      cout << majority << endl;
-    Player::resetId();
+    listPlayerTypes();
     cout << endl << "Add player(s) [1]" << endl << "Start game [2]" << endl;
     char input;
     cin >> input;
@@ -75,7 +85,7 @@ void Menu::playerSelection(GameManager& GM) const {
 void Menu::gameComplete(bool& running, GameManager& GM) const {
     GameManager::concise = true;
     GM.sort();
-    cout << GM << endl << "press any key to exit: ";
+    cout << GM << endl << "Save results to file [1]" << endl << "Next game [2]" << endl << "Exit[3]" << endl;
     char temp;
     cin >> temp;
     running = false;
@@ -83,7 +93,7 @@ void Menu::gameComplete(bool& running, GameManager& GM) const {
 
 void Menu::save(const GameManager& GM) const {
     FileManager FM;
-    std::string filename;
-    std::getline(std::cin, filename);
+    string filename;
+    getline(std::cin, filename);
     FM.saveToFile(filename.c_str(), GM);
 }
