@@ -11,4 +11,13 @@
 
 #include "memtrace.h"
 
-void FileManager::saveToFile(const char* filename, const GameManager& gm) const { }
+void FileManager::saveToFile(string filename, const GameManager& gm) const {
+    filename.append(".txt");
+    std::ofstream file;
+    try { file = std::ofstream(filename.c_str()); }
+    catch (std::ios_base::failure&) {
+        std::cout << "File could not be opened" << std::endl << std::endl;
+    }
+    file << gm;
+    file.close();
+}

@@ -164,7 +164,7 @@ void Menu::getPlayer(GameManager& gm) const {
     string line;
     cout << "Add player(s): ";
     cin.ignore(1);
-    getline(cin, line);
+    cin >> line;
     for (int i = 0; line[i] != '\0'; i++) {
         line[i] = tolower(line[i]);
     }
@@ -187,7 +187,7 @@ void Menu::listPlayerTypes() {
     Player::resetId();
 }
 
-void Menu::playerSelection(GameManager& GM) const {
+void Menu::playerSelection(GameManager& gm) const {
     GameManager::concise = false;
     listPlayerTypes();
     string input;
@@ -195,26 +195,35 @@ void Menu::playerSelection(GameManager& GM) const {
         cout << "Add player(s) [1]" << endl << "Start game [2]" << endl;
         cin >> input;
         switch (input[0]) {
-        case '1': getPlayer(GM); break;
-        case '2': break;
-        default: cout << "Invalid input." << endl << endl; break;
+            case '1': getPlayer(gm); break;
+            case '2': break;
+            default: cout << "Invalid input." << endl << endl; break;
         }
     } while (input[0] != '2');
     //cout << endl;
 }
 
-void Menu::gameComplete(bool& running, GameManager& GM) const {
+void Menu::gameComplete(bool& running, GameManager& gm) const {
     GameManager::concise = true;
-    GM.sort();
-    cout << GM << endl << "Save results to file [1]" << endl << "Next game [2]" << endl << "Exit[3]" << endl;
-    char temp;
-    cin >> temp;
-    running = false;
+    gm.sort();
+    cout << gm << endl;
+    string input;
+    do {
+        cout << "Save results to file [1]" << endl << "Next game [2]" << endl << "Exit [3]" << endl;
+        cin >> input;
+        switch (input[0]) {
+            case '1':save(gm); break;
+            case '2': break;
+            case '3': running = false; break;
+            default: cout << "Invalid input." << endl << endl; break;
+        }
+    } while (input[0] != '2' && input[0] != '3');
 }
 
-void Menu::save(const GameManager& GM) const {
+void Menu::save(const GameManager& gm) const {
     FileManager FM;
     string filename;
-    getline(std::cin, filename);
-    FM.saveToFile(filename.c_str(), GM);
+    cout << "Filename: ";
+    cin >> filename;
+    FM.saveToFile(filename, gm);
 }

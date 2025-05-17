@@ -24,7 +24,7 @@ public:
      * @param filename Name of the file to where it writes.
      * @param gm The instance of GameManager from which data should be saved to file.
      */
-    void saveToFile(const char* filename, const GameManager& gm) const;
+    void saveToFile(string filename, const GameManager& gm) const;
 };
 
 #endif //FILEMANAGER_H

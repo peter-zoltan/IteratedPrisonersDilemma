@@ -57,8 +57,8 @@ void GameManager::sort() {
 }
 
 std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
-    if (gm.players.empty()) {
-        std::cout << "No players participated." << std::endl;
+    if (gm.players.empty() || gm.players.size() == 1) {
+        os << "No matches were played." << std::endl;
         return os;
     }
     os << "Rounds played: " << gm.rounds << std::endl << std::endl;
