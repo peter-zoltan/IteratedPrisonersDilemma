@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& os, const Player& p) {
 cooperation Selfish::strategy() const { return false; }
 
 std::ostream& Selfish::print(std::ostream& os) const {
-    os << "Selfish (ID:"<< ID << ") score: " << score << endl;
+    os << "Selfish\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
     return os;
 }
 
@@ -62,7 +62,7 @@ Player* Selfish::clone() const {
 cooperation Naive::strategy() const { return true; }
 
 std::ostream& Naive::print(std::ostream& os) const {
-    os << "Naive (ID:" << ID << ") score: " << score  << endl;
+    os << "Naive\t(ID:" << std::setw(2) << ID << ") score: " << score  << endl;
     return os;
 }
 
@@ -86,7 +86,7 @@ cooperation Vengeful::strategy() const {
 }
 
 std::ostream& Vengeful::print(std::ostream& os) const {
-    os << "Vengeful (ID:" << ID << ") score: " << score << endl;
+    os << "Vengeful\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
     return os;
 }
 
@@ -108,7 +108,7 @@ cooperation Copycat::strategy() const {
 }
 
 std::ostream& Copycat::print(std::ostream& os) const {
-    os << "Copycat (ID:" << ID << ") score: " << score << endl;
+    os << "Copycat\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
     return os;
 }
 
@@ -129,7 +129,7 @@ cooperation Random::strategy() const {
 }
 
 std::ostream& Random::print(std::ostream& os) const {
-    os << "Random (ID:" << ID << ") score: " << score << endl;
+    os << "Random\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
     return os;
 }
 
@@ -157,7 +157,7 @@ cooperation Majority::strategy() const {
 }
 
 std::ostream& Majority::print(std::ostream& os) const {
-    os << "Majority (ID:" << ID << ") score: " << score << endl;
+    os << "Majority\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
     return os;
 }
 

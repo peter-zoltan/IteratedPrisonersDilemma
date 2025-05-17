@@ -62,8 +62,10 @@ std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
         return os;
     }
     os << "Rounds played: " << gm.rounds << std::endl << std::endl;
+    int i = 1;
     for (auto player : gm.players) {
-        os << *player;
+        os << "#" << i << " " << *player;
+        i++;
     }
     return os;
 }

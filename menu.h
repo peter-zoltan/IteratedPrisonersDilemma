@@ -17,6 +17,16 @@
  */
 class Menu {
 
+    int getRounds() const;
+
+    int getR() const;
+
+    int getP(int R) const;
+
+    int getT(int P) const;
+
+    int getS(int R, int P, int T) const;
+
     void checkPlayer(GameManager& gm, const string& line, const string& type, Player* (*newType)()) const;
 
     void getPlayer(GameManager& gm) const;
