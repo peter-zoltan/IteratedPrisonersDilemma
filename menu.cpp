@@ -21,7 +21,7 @@ int Menu::getRounds() const {
     string str_rounds;
     while (true) {
         cout << "Number of rounds each match: ";
-        cin >> str_rounds;
+        getline(cin, str_rounds);
         int i = 0;
         while (str_rounds[i] != '\0' && isdigit(str_rounds[i])) { i++; }
         if (i > 0) {
@@ -38,7 +38,7 @@ int Menu::getR() const {
     int R;
     while (true) {
         cout << "Value of mutual cooperation: ";
-        cin >> str_R;
+        getline(cin, str_R);
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -62,7 +62,7 @@ int Menu::getP(int R) const {
     int P;
     while (true) {
         cout << "Value of mutual defection: ";
-        cin >> str_P;
+        getline(cin, str_P);
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -87,7 +87,7 @@ int Menu::getT(int R) const {
     int T;
     while (true) {
         cout << "Value of one-sided defection: ";
-        cin >> str_T;
+        getline(cin, str_T);
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -112,7 +112,7 @@ int Menu::getS(int R, int P, int T) const {
     int S;
     while (true) {
         cout << "Value of one-sided cooperation: ";
-        cin >> str_S;
+        getline(cin, str_S);
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -164,7 +164,7 @@ void Menu::getPlayer(GameManager& gm) const {
     string line;
     cout << "Add player(s): ";
     cin.ignore(1);
-    cin >> line;
+    getline(cin, line);
     for (int i = 0; line[i] != '\0'; i++) {
         line[i] = tolower(line[i]);
     }
@@ -193,7 +193,7 @@ void Menu::playerSelection(GameManager& gm) const {
     string input;
     do {
         cout << "Add player(s) [1]" << endl << "Start game [2]" << endl;
-        cin >> input;
+        getline(cin, input);
         switch (input[0]) {
             case '1': getPlayer(gm); break;
             case '2': break;
@@ -210,7 +210,7 @@ void Menu::gameComplete(bool& running, GameManager& gm) const {
     string input;
     do {
         cout << "Save results to file [1]" << endl << "Next game [2]" << endl << "Exit [3]" << endl;
-        cin >> input;
+        getline(cin, input);
         switch (input[0]) {
             case '1':save(gm); break;
             case '2': break;
@@ -224,6 +224,6 @@ void Menu::save(const GameManager& gm) const {
     FileManager FM;
     string filename;
     cout << "Filename: ";
-    cin >> filename;
+    getline(cin, filename);
     FM.saveToFile(filename, gm);
 }

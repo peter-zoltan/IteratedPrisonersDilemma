@@ -25,6 +25,9 @@ public:
      * @param gm The instance of GameManager from which data should be saved to file.
      */
     void saveToFile(string filename, const GameManager& gm) const;
+
+    friend void testFM();
+
 };
 
 #endif //FILEMANAGER_H

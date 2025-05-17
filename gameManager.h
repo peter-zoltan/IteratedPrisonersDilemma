@@ -11,7 +11,6 @@
 #define GAMEMANAGER_H
 
 #include "player.h"
-#include <vector>
 using std::vector;
 
 /**
@@ -76,6 +75,8 @@ public:
      * @return Returns the stream given as parameter.
      */
     friend std::ostream& operator<<(std::ostream& os, const GameManager& gm);
+
+    friend void testGM();
 
 };
 std::ostream& operator<<(std::ostream& os, const GameManager& gm);

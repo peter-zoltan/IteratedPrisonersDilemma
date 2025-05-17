@@ -107,6 +107,8 @@ public:
 
     bool greaterThan(const Player& other) const;
 
+    friend void testPlayer();
+
 };
 
 /**

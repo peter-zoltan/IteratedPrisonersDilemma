@@ -8,6 +8,7 @@
 #include "gameManager.h"
 #include "menu.h"
 #include "fileManager.h"
+#include "test.h"
 
 #include "memtrace.h"
 
@@ -16,6 +17,11 @@
  */
 int main() {
 
+    #ifdef CPORTA
+    testPlayer();
+    testGM();
+    testFM();
+    #else
     bool running = true;
     while (running) {
         Menu menu;
@@ -24,5 +30,5 @@ int main() {
         GM.runGame();
         menu.gameComplete(running, GM);
     }
-
+    #endif
 }
