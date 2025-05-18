@@ -62,6 +62,13 @@ class Menu {
     void checkPlayer(GameManager& gm, const string& line, const string& type, Player* (*newType)()) const;
 
     /**
+     * Checks for the string "all" in parameter line, if it's found adds a Player of every type to parameter 'gm'.
+     * @param gm GameManager instance to which the Players are added.
+     * @param line The line it checks for the string.
+     */
+    void checkAll(GameManager& gm, const string& line) const;
+
+    /**
      * Gets a line from the standard input and calls 'checkPlayer' to search for each Player type mentioned within.
      * @param gm GameManager instance to which the Players are added.
      */

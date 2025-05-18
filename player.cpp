@@ -6,9 +6,10 @@
  * Source file for the class Player and it's inheritors.
  */
 
+#include <random>
+#include <iomanip>
 #include "player.h"
 #include "gameManager.h"
-#include <random>
 
 #include "memtrace.h"
 

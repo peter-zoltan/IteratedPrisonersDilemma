@@ -92,15 +92,21 @@ void testFM() {
     std::ifstream testFile ("test.txt");
     string line;
     std::getline(testFile, line);
+    char c;
+
     TEST (fm, notempty) {
-        EXPECT_NO_THROW(line.at(0)) << "File should not be empty." << std::endl;
+        EXPECT_NO_THROW(c = line.at(0)) << "File should not be empty." << std::endl;
     } END
+
+    c = ' ';
+    line[0] = c;    // not nice, only done so that 'line.at(0)' on it's own doesn' complain that the value is discarded
     testFile.close();
 }
 
 void testMenu() {
     GameManager gm(1, 5, 2, 10, -1);
     Menu menu;
+
     TEST (menu, checkPlayer) {
         menu.checkPlayer(gm, " selfishnaiverandomd dsmajorityselfishvengeful", "selfish", &Selfish::wrap);
         menu.checkPlayer(gm, " selfishnaiverandomd dsmajorityselfishvengeful", "naive", &Naive::wrap);
@@ -110,4 +116,10 @@ void testMenu() {
         menu.checkPlayer(gm, " selfishnaiverandomd dsmajorityselfishvengeful", "majority", &Majority::wrap);
         EXPECT_EQ(static_cast<size_t>(6), gm.players.size()) << "Six instances should be found within the string." << std::endl;
     } END
+
+    TEST (menu, checkAll) {
+        menu.checkAll(gm, "sf fallallfsl");
+        EXPECT_EQ(static_cast<size_t>(18), gm.players.size()) << "Eighteen instances should be found within the string." << std::endl;
+    } END
+
 }

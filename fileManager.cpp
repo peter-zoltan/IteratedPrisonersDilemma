@@ -7,6 +7,7 @@
  * Source file for the class FileManager.
  */
 
+#include <fstream>
 #include "fileManager.h"
 
 #include "memtrace.h"

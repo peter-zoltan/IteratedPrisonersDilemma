@@ -20,6 +20,7 @@ int Menu::getRounds() const {
     while (true) {
         cout << "Number of rounds each match: ";
         getline(cin, str_rounds);    // gets the line
+        cout << endl;
         int i = 0;
         while (str_rounds[i] != '\0' && isdigit(str_rounds[i])) { i++; }    // takes the leading digits from line
         if (i > 0) {                                                        // if there were leading digits
@@ -36,6 +37,7 @@ int Menu::getR() const {
     while (true) {
         cout << "Value of mutual cooperation: ";
         getline(cin, str_R);    // gets the line
+        cout << endl;
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -59,6 +61,7 @@ int Menu::getP(int R) const {
     while (true) {
         cout << "Value of mutual defection: ";
         getline(cin, str_P);    // gets the line
+        cout << endl;
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -83,6 +86,7 @@ int Menu::getT(int R) const {
     while (true) {
         cout << "Value of one-sided defection: ";
         getline(cin, str_T);    // gets the line
+        cout << endl;
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -108,6 +112,7 @@ int Menu::getS(int R, int P, int T) const {
     while (true) {
         cout << "Value of one-sided cooperation: ";
         getline(cin, str_S);    // gets the line
+        cout << endl;
         int start = 0;
         int end = 0;
         bool negative = false;
@@ -156,10 +161,27 @@ void Menu::checkPlayer(GameManager& gm, const string& line, const string& type, 
     }
 }
 
+void Menu::checkAll(GameManager& gm, const string& line) const {
+    size_t start = 0;               // starting point for search
+    size_t end = line.length();
+    while (start < end && line.substr(start, end).find("all") != std::string::npos) {
+        gm.addPlayer(new Selfish);    // if the correct string is found new Players are added
+        gm.addPlayer(new Naive());
+        gm.addPlayer(new Vengeful());
+        gm.addPlayer(new Copycat());
+        gm.addPlayer(new Random());
+        gm.addPlayer(new Majority());
+        cout << "One of each type of prisoner added." << endl;
+        start = start + line.substr(start, end).find("all") + 3;    // starting point for search is
+                                            // incremented to look for repeat occurrences in the next cycle
+    }
+}
+
 void Menu::getPlayer(GameManager& gm) const {
     string line;
     cout << "Add player(s): ";
     getline(cin, line);
+    cout << endl;
     for (int i = 0; line[i] != '\0'; i++) {     // input is converted to lowercase characters for easier search
         line[i] = tolower(line[i]);
     }
@@ -169,6 +191,7 @@ void Menu::getPlayer(GameManager& gm) const {
     checkPlayer(gm, line, "copycat", &Copycat::wrap);
     checkPlayer(gm, line, "random", &Random::wrap);
     checkPlayer(gm, line, "majority", &Majority::wrap);
+    checkAll(gm, line);
     cout << endl;
 }
 
@@ -184,11 +207,13 @@ void Menu::listPlayerTypes() {
 
 void Menu::playerSelection(GameManager& gm) const {
     GameManager::concise = false;
+    cout << "Choose players to participate:" << endl << endl;
     listPlayerTypes();
     string input;
     do {
         cout << "Add player(s)\t[1]" << endl << "Start game\t[2]" << endl;
         getline(cin, input);
+        cout << endl;
         switch (input[0]) {
             case '1': getPlayer(gm); break;
             case '2': break;
@@ -205,6 +230,7 @@ void Menu::gameComplete(bool& running, GameManager& gm) const {
     do {
         cout << "Save results to file\t[1]" << endl << "Next game\t\t[2]" << endl << "Exit\t\t\t[3]" << endl;
         getline(cin, input);
+        cout << endl;
         switch (input[0]) {
             case '1':save(gm); break;
             case '2': break;
@@ -219,5 +245,6 @@ void Menu::save(const GameManager& gm) const {
     string filename;
     cout << "Filename: ";
     getline(cin, filename);
+    cout << endl;
     fm.saveToFile(filename, gm);
 }
