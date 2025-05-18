@@ -17,11 +17,7 @@ GameManager::GameManager(int rounds, int R, int P, int T, int S)
     : rounds(rounds), R(R), P(P), T(T), S(S) {}
 
 GameManager::GameManager(const GameManager& GM)
-    : rounds(GM.rounds), R(GM.R), P(GM.P), T(GM.T), S(GM.S) {
-    for (auto player : GM.players) {
-        addPlayer(player->clone());
-    }
-}
+    : rounds(GM.rounds), R(GM.R), P(GM.P), T(GM.T), S(GM.S) {}
 
 GameManager::~GameManager() {
     for (auto & player : players) {
@@ -32,7 +28,7 @@ GameManager::~GameManager() {
 void GameManager::runGame () const {
     for (auto a = players.begin(); a != players.end(); ++a) {
         for (auto b = a + 1; b != players.end(); ++b) {
-            if (*a != *b) {
+            if (*a != *b) {                         // each Player matches up against every OTHER Player
                 for (int i = 0; i < rounds; ++i) {
                     cooperation coopA = (*a)->strategy();
                     cooperation coopB = (*b)->strategy();
@@ -40,10 +36,10 @@ void GameManager::runGame () const {
                     if (coopA && !coopB) { (*a)->incrementScore(S); (*b)->incrementScore(T); }
                     if (!coopA && coopB) { (*a)->incrementScore(T); (*b)->incrementScore(S); }
                     if (!coopA && !coopB) { (*a)->incrementScore(P); (*b)->incrementScore(P); }
-                    (*a)->remember(coopB);
+                    (*a)->remember(coopB);                      // memory of their opponent's choice is stored
                     (*b)->remember(coopA);
                 }
-                (*a)->forget();
+                (*a)->forget();                     // memory is cleared in preparatio for the next match
                 (*b)->forget();
             }
         }
@@ -58,7 +54,7 @@ void GameManager::sort() {
 
 std::ostream& operator<<(std::ostream& os, const GameManager& gm) {
     if (gm.players.empty() || gm.players.size() == 1) {
-        os << "No matches were played." << std::endl;
+        os << "No matches were played." << std::endl;   // no results to be written
         return os;
     }
     os << "Rounds played: " << gm.rounds << std::endl << std::endl;

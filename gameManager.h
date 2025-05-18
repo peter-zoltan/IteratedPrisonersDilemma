@@ -43,6 +43,7 @@ public:
 
     /**
      * Copy constructor.
+     * Does not copy the list of Players, only the parameters initialized in the above constructor.
      * @param gm The instance to be copied.
      */
     GameManager(const GameManager& gm);
@@ -76,9 +77,12 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& os, const GameManager& gm);
 
-    friend void testGM();
+    friend void testGM();    // Added as a friend so there's no need for getters solely for testing.
+
+    friend void testMenu();    // Added as a friend so there's no need for getters solely for testing.
 
 };
+
 std::ostream& operator<<(std::ostream& os, const GameManager& gm);
 
 #endif //GAMEMANAGER_H

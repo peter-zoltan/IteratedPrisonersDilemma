@@ -1,5 +1,7 @@
 /**
  * @file main.cpp
+ * Contains the main() function for the project.
+ * Handles tests and the application loop.
  */
 
 #include <iostream>
@@ -13,15 +15,12 @@
 #include "memtrace.h"
 
 /**
- *
+ * Main function for the project, if macro CPORTA is defined tests are ran,
+ * otherwise handles the application loop with one game constituting a cycle.
  */
 int main() {
 
-    #ifdef CPORTA
-    testPlayer();
-    testGM();
-    testFM();
-    #else
+    #ifndef CPORTA
     bool running = true;
     while (running) {
         Menu menu;
@@ -30,5 +29,10 @@ int main() {
         GM.runGame();
         menu.gameComplete(running, GM);
     }
+    #else
+    testPlayer();
+    testGM();
+    testFM();
+    testMenu();
     #endif
 }

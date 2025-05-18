@@ -94,20 +94,28 @@ public:
      * Creates another instance of the same type.
      * @return Returns pointer to the created object.
      */
-    virtual Player* clone() const = 0;
+    /*virtual Player* clone() const = 0;*/
 
     /**
-     *
-     * @param coop
-     * @return
+     * Stores the given bool value in the player's memory.
+     * @param coop Value to be stored.
      */
     void remember(cooperation coop);
 
+    /**
+     * Clears the player's memory.
+     */
     void forget();
 
+    /**
+     * Compares the player's score with another player's score.
+     * @param other The player to be compared with.
+     * @return True if the instance the function of which is being called has a higher
+     * score than the player instance given as a parameter.
+     */
     bool greaterThan(const Player& other) const;
 
-    friend void testPlayer();
+    friend void testPlayer();    // Added as a friend so there's no need for getters solely for testing.
 
 };
 
@@ -137,8 +145,13 @@ public:
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Selfish()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Selfish()'.
+     */
     static Player* wrap() { return new Selfish(); }
 
 };
@@ -162,8 +175,13 @@ public:
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Naive()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Naive()'.
+     */
     static Player* wrap() { return new Naive(); }
 
 };
@@ -190,46 +208,74 @@ public:
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Vengeful()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Vengeful()'.
+     */
     static Player* wrap() { return new Vengeful(); }
 
 };
 
+
 /**
  * @class Copycat
+ * Inheritor of abstract class Player.
+ * Starts out with cooperation then copies their opponent.
  */
 class Copycat : public Player {
 
 public:
 
+    /**
+     * @return Returns true in the first round, then the latest choice of their opponent every round after that.
+     */
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Copycat()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Copycat()'.
+     */
     static Player* wrap() { return new Copycat(); }
 
 };
 
+
 /**
  * @class Random
+ * Inheritor of abstract class Player.
+ * Chooses between cooperation and defection at random,
+ * with a roughly 50% chance of choosing either.
  */
 class Random : public Player {
 
 public:
 
+    /**
+     * @return Returns true or false at random, with a roughly 50% chance of returning either.
+     */
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Random()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Random()'.
+     */
     static Player* wrap() { return new Random(); }
 
 };
@@ -237,19 +283,27 @@ public:
 
 /**
  * @class Majority
+ * Cooperates at first, then copies the choice their opponent has made more in the match.
  */
 class Majority : public Player {
 
 public:
-
+    /**
+     * @return Returns true in the first round, then the choice their opponent has made more every round after that.
+     */
     cooperation strategy() const override;
 
     std::ostream& print(std::ostream&) const override;
 
     std::ostream& descript(std::ostream&) const override;
 
-    Player* clone() const override;
-
+    /**
+     * Wraps the return of 'new Majority()' into a return type of Player*.
+     * Done so that a pointer to this function can be passed as a pointer
+     * to a function with return type Player*, yet return an instance of
+     * an inheritor rather than the base class.
+     * @return The return value of 'new Majority()'.
+     */
     static Player* wrap() { return new Majority(); }
 
 };

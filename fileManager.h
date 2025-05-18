@@ -26,7 +26,7 @@ public:
      */
     void saveToFile(string filename, const GameManager& gm) const;
 
-    friend void testFM();
+    friend void testFM();    // Added as a friend so there's no need for getters solely for testing.
 
 };
 

@@ -17,6 +17,7 @@ void FileManager::saveToFile(string filename, const GameManager& gm) const {
     try { file = std::ofstream(filename.c_str()); }
     catch (std::ios_base::failure&) {
         std::cout << "File could not be opened" << std::endl << std::endl;
+        return;
     }
     file << gm;
     file.close();

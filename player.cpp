@@ -43,7 +43,7 @@ std::ostream& operator<<(std::ostream& os, const Player& p) {
 cooperation Selfish::strategy() const { return false; }
 
 std::ostream& Selfish::print(std::ostream& os) const {
-    os << "Selfish\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
+    os << "Selfish\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
@@ -52,28 +52,18 @@ std::ostream& Selfish::descript(std::ostream& os) const {
     return os;
 }
 
-Player* Selfish::clone() const {
-    auto* clone = new Selfish();
-    return clone;
-}
-
 //
 
 cooperation Naive::strategy() const { return true; }
 
 std::ostream& Naive::print(std::ostream& os) const {
-    os << "Naive\t(ID:" << std::setw(2) << ID << ") score: " << score  << endl;
+    os << "Naive\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
 std::ostream& Naive::descript(std::ostream& os) const {
     os << "Naive" << endl << "[Always cooperates.]" << endl;
     return os;
-}
-
-Player* Naive::clone() const {
-    auto* clone = new Naive();
-    return clone;
 }
 
 //
@@ -86,18 +76,13 @@ cooperation Vengeful::strategy() const {
 }
 
 std::ostream& Vengeful::print(std::ostream& os) const {
-    os << "Vengeful\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
+    os << "Vengeful\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
 std::ostream& Vengeful::descript(std::ostream& os) const {
     os << "Vengeful" << endl << "[Cooperates until the other player defects for the first time in the match.]" << endl;
     return os;
-}
-
-Player* Vengeful::clone() const {
-    auto* clone = new Vengeful();
-    return clone;
 }
 
 //
@@ -108,18 +93,13 @@ cooperation Copycat::strategy() const {
 }
 
 std::ostream& Copycat::print(std::ostream& os) const {
-    os << "Copycat\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
+    os << "Copycat\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
 std::ostream& Copycat::descript(std::ostream& os) const {
     os << "Copycat" << endl << "[Copies the last choice made by their opponent, starts out with cooperation.]" << endl;
     return os;
-}
-
-Player* Copycat::clone() const {
-    auto* clone = new Copycat();
-    return clone;
 }
 
 //
@@ -129,18 +109,13 @@ cooperation Random::strategy() const {
 }
 
 std::ostream& Random::print(std::ostream& os) const {
-    os << "Random\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
+    os << "Random\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
 std::ostream& Random::descript(std::ostream& os) const {
     os << "Random" << endl << "[Chooses between cooperation and defection at random.]" << endl;
     return os;
-}
-
-Player* Random::clone() const {
-    auto* clone = new Random();
-    return clone;
 }
 
 //
@@ -157,17 +132,12 @@ cooperation Majority::strategy() const {
 }
 
 std::ostream& Majority::print(std::ostream& os) const {
-    os << "Majority\t(ID:" << std::setw(2) << ID << ") score: " << score << endl;
+    os << "Majority\t(ID:" << std::setw(2) << ID << ") - " << score << " points" << endl;
     return os;
 }
 
 std::ostream& Majority::descript(std::ostream& os) const {
     os << "Majority" << endl << "[Cooperates at first, then copies the choice their opponent has made more in the match.]" << endl;
     return os;
-}
-
-Player* Majority::clone() const {
-    auto* clone = new Majority();
-    return clone;
 }
 
