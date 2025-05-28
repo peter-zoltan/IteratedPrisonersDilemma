@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.29)
+
+set( CMAKE_CXX_COMPILER "g++" )
+set( CMAKE_C_COMPILER "gcc" )
+
 project(IteratedPrisonersDilemma)
 
 set(CMAKE_CXX_STANDARD 14)
