@@ -14,7 +14,7 @@
 
 void testPlayer() {
     Player::resetId();
-    Selfish player;;
+    Selfish player;
 
     TEST (player, ID) {
         EXPECT_EQ(0, player.getID());
